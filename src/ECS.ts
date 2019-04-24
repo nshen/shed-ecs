@@ -69,8 +69,8 @@ export class ECS {
 
     update() {
         for (let i = 0; i < this._systems.length; i++) {
-            this._systems[i].update();
             this.__updateGroups();
+            this._systems[i].update();
         }
     }
 

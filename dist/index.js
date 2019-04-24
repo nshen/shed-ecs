@@ -2,29 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
 class Entity {
   constructor(ecs, name = 'Entity') {
-    _defineProperty(this, "_ecs", void 0);
-
-    _defineProperty(this, "_id", void 0);
-
-    _defineProperty(this, "_comps", {});
-
+    this._ecs = void 0;
+    this._id = void 0;
+    this._comps = {};
     this._id = String(name + Entity.__uniqueID++);
     this._ecs = ecs;
   }
@@ -73,18 +55,14 @@ class Entity {
   }
 
 }
-
-_defineProperty(Entity, "__uniqueID", 0);
+Entity.__uniqueID = 0;
 
 class Group {
   /** @internal */
   constructor(...componentTypes) {
-    _defineProperty(this, "_length", 0);
-
-    _defineProperty(this, "_componentTypes", void 0);
-
-    _defineProperty(this, "_entityMap", {});
-
+    this._length = 0;
+    this._componentTypes = void 0;
+    this._entityMap = {};
     if (componentTypes.length <= 0) console.error('group must have componentType they care');
     this._componentTypes = componentTypes;
   } // protected _listeners: ((e: Entity) => void)[] = [];
@@ -153,17 +131,12 @@ class Group {
 
 class ECS {
   constructor() {
-    _defineProperty(this, "_entityMap", {});
-
-    _defineProperty(this, "_groups", []);
-
-    _defineProperty(this, "_groupCache", {});
-
-    _defineProperty(this, "_systems", []);
-
-    _defineProperty(this, "_dirtyMap", {});
-
-    _defineProperty(this, "state", {});
+    this._entityMap = {};
+    this._groups = [];
+    this._groupCache = {};
+    this._systems = [];
+    this._dirtyMap = {};
+    this.state = {};
   }
 
   addNewEntity(name, ...components) {
@@ -232,9 +205,9 @@ class ECS {
 
   update() {
     for (let i = 0; i < this._systems.length; i++) {
-      this._systems[i].update();
-
       this.__updateGroups();
+
+      this._systems[i].update();
     }
   }
 
@@ -260,8 +233,7 @@ class ECS {
 
 class System {
   constructor(ecs) {
-    _defineProperty(this, "_ecs", void 0);
-
+    this._ecs = void 0;
     this._ecs = ecs;
   }
 
@@ -273,3 +245,4 @@ exports.ECS = ECS;
 exports.Entity = Entity;
 exports.Group = Group;
 exports.System = System;
+//# sourceMappingURL=index.js.map
