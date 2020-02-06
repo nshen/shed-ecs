@@ -1,3 +1,8 @@
+# 已经转移整合至新地址，此项目不再更新
+
+## https://github.com/nshen/mini-shed/
+
+---
 # @shed/ecs
 
 精简高效的 Entity-Component-System 实现，为小游戏设计。
